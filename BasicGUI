@@ -1,0 +1,43 @@
+package gui;
+import java.awt.*;
+import javax.swing.*;
+
+public class GeneralGUIBuilding {
+	public static void main(String agrs[]){
+		JFrame frame = new JFrame();
+		
+		//setting the frame size (WIDTH, HEIGHT)
+		frame.setSize(new Dimension(500, 400));
+		
+		//set the start position(in the middle)
+		frame.setLocationRelativeTo(null);
+		
+		//set a default close action 
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//EXIT_ON_CLOSE
+		
+		//set a title
+		frame.setTitle("A simple JFrame");
+		
+		//disable resize
+		frame.setResizable(false);
+		
+		//make JFrame visible
+		frame.setVisible(true);
+		
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.pink);
+		frame.getContentPane().add(panel);
+		
+		//adding a button to the JPanel
+		JButton button = new JButton("The is a button");
+		panel.add(button);
+		
+		//adding a text field to the JPanel
+		JTextField textField = new JTextField();
+		textField.setPreferredSize(new Dimension(200, 15));
+		textField.setBackground(Color.gray);
+		panel.add(textField);
+		
+	}
+}
