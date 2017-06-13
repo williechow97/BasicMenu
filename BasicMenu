@@ -1,0 +1,115 @@
+import java.util.*;
+import java.io.*;
+
+public class BasiMenu{
+public static Scanner userScanner = new Scanner(System.in);
+	public static void main(String args[]){
+		Scanner sc;
+		
+		do{
+			sc = openInputFile();
+			if(sc != null){
+				menu();
+			}
+			
+		}while(solveAnother());
+	
+	}
+  
+	//Method to read an input file from the user
+	//returns a Scanner of the input file 
+	public static Scanner openInputFile()
+	{
+		String filename;
+        	Scanner scanner=null;
+        
+		System.out.print("Enter the input filename: ");
+		filename = userScanner.nextLine();
+        	File file= new File(filename);
+
+        	try{
+        		scanner = new Scanner(file);
+        	}// end try
+        	catch(FileNotFoundException fe){
+        	   System.out.println("Can't open input file\n");
+       	    return null; // array of 0 elements
+        	} // end catch
+        	return scanner;
+	}//end openInputFile
+	
+	//Method to display the basic menu for the user 
+	public static void menu(){
+	
+		System.out.println("\t\tMENU");
+		System.out.println("---------------------------------------------------");
+		
+			
+		System.out.println("1. Add Source");
+		System.out.println("2. Add Sink");
+		System.out.println("3. Remove Source ");
+		System.out.println("4. Remove Sink");
+		System.out.println("5. Run Segmentation");
+		System.out.println("6. Save Segmented Image");
+		System.out.println("7. Save Graph Model");
+		System.out.println("8. Display the Graph");
+		System.out.println("\nEnter the number for your choose: ");
+		
+		switch(userScanner.next()){
+			case "1" :
+					//addSource();
+					break;
+			case "2" :
+					//addSink();
+					break;
+			case "3" :
+					//removeSource();
+					break;
+			case "4" :
+					//removeSink();
+					break;
+			case "5" :
+					//runSegmentedImage();
+					break;
+			case "6" :
+					//saveSegmentedImage();
+					break;
+			case "7" :
+					//saveGraphToTextFile();
+					break;
+			case "8" :
+				System.out.println("Display Choices:");
+				System.out.println("\t1. Adjacency List");
+				System.out.println("\t2. Breadth-First Traversal");
+				System.out.println("\t3. Depth-First Traversal");
+				System.out.print("Choice: ");
+				switch(userScanner.next()){
+					case "1" :
+						//showAdjTable();
+						break;
+					case "2" :
+						//breadthFirstTraversal();
+						break;
+					case "3" :
+						//depthFirsttraversal(); 
+						break;
+					default:
+						System.out.println("Invalid Entry");
+				}
+				break;
+			default:
+					System.out.println("Invalid entry.");			
+		}
+	}//end menu
+  
+	//Method ask the user if they want to segment another image 
+	public static boolean solveAnother(){
+		boolean again = false;
+		System.out.println("Do another image segmentation? Y/N");
+		String userString = userScanner.next();
+		if(userString.compareToIgnoreCase("y") == 0){
+			again = true;
+		}
+		userScanner.nextLine();
+		return again;
+	}//end solveAnother
+}
