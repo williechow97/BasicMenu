@@ -13,6 +13,7 @@ public static void GridBag(){
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		
 		GridBagConstraints c = new GridBagConstraints();
+		JButton file = new JButton("Enter a file");
 		JButton addSource = new JButton("Add Source");
 		JButton addSink = new JButton("Add Sink");
 		JButton removeSource = new JButton("Remove Source");
@@ -23,6 +24,10 @@ public static void GridBag(){
 		JButton displayGraph = new JButton ("Display the Graph");
 		
 		c.insets = new Insets(10, 10, 10, 10);
+		c.gridx = 0;
+		c.gridy = 0;
+		panel.add(file, c);
+		file.addActionListener(new Action());
 		c.gridx = 0;
 		c.gridy = 0;
 		panel.add(addSource, c);
@@ -75,6 +80,18 @@ public static void GridBag(){
 			JPanel pan = new JPanel();
 			f2.add(pan);
 			pan.add(lab);
+			}
+			else if(ac.equals("Enter a file")){
+				JFrame f2 = new JFrame("Source added");
+				f2.setVisible(true);
+				f2.setSize(100,100);
+				JPanel pan = new JPanel();
+				f2.add(pan);
+				
+				JTextField textField = new JTextField();
+				textField.setPreferredSize(new Dimension(75, 25));
+				textField.setBackground(Color.green);
+				pan.add(textField);
 			}
 			else if(ac.equals("Add Sink")){
 				JFrame f2 = new JFrame("Source added");
