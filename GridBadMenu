@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public static void GridBag(){
@@ -24,33 +26,118 @@ public static void GridBag(){
 		c.gridx = 0;
 		c.gridy = 0;
 		panel.add(addSource, c);
+		addSource.addActionListener(new Action());
 		
 		c.gridx = 0;
 		c.gridy = 1;
 		panel.add(addSink, c);
+		addSink.addActionListener(new Action());
 		
 		c.gridx = 0;
 		c.gridy = 2;
 		panel.add(removeSource, c);
+		removeSource.addActionListener(new Action());
 		
 		c.gridx = 0;
 		c.gridy = 3;
 		panel.add(removeSink, c);
+		removeSink.addActionListener(new Action());
 		
 		c.gridx = 0;
 		c.gridy = 4;
 		panel.add(runSeg, c);
+		runSeg.addActionListener(new Action());
 		
 		c.gridx = 0;
 		c.gridy = 5;
 		panel.add(saveSeg, c);
+		saveSeg.addActionListener(new Action());
 		
 		c.gridx = 0;
 		c.gridy = 6;
 		panel.add(saveGraph, c);
+		saveGraph.addActionListener(new Action());
 		
 		c.gridx = 0;
 		c.gridy = 7;
 		panel.add(displayGraph, c);
-		
+		displayGraph.addActionListener(new Action());
+	}
+	
+	public static class Action implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			String ac = e.getActionCommand();
+			if(ac.equals("Add Source")){
+			JFrame f2 = new JFrame("Source added");
+			f2.setVisible(true);
+			f2.setSize(100,100);
+			JLabel lab = new JLabel("Source added");
+			JPanel pan = new JPanel();
+			f2.add(pan);
+			pan.add(lab);
+			}
+			else if(ac.equals("Add Sink")){
+				JFrame f2 = new JFrame("Source added");
+				f2.setVisible(true);
+				f2.setSize(100,100);
+				JLabel lab = new JLabel("Sink added");
+				JPanel pan = new JPanel();
+				f2.add(pan);
+				pan.add(lab);
+			}
+			else if(ac.equals("Remove Source")){
+				JFrame f2 = new JFrame("Source added");
+				f2.setVisible(true);
+				f2.setSize(100,100);
+				JLabel lab = new JLabel("Source removed");
+				JPanel pan = new JPanel();
+				f2.add(pan);
+				pan.add(lab);
+			}
+			else if(ac.equals("Remove Sink")){
+				JFrame f2 = new JFrame("Source added");
+				f2.setVisible(true);
+				f2.setSize(100,100);
+				JLabel lab = new JLabel("Sink removed");
+				JPanel pan = new JPanel();
+				f2.add(pan);
+				pan.add(lab);
+			}
+			else if(ac.equals("Run Segmentation")){
+				JFrame f2 = new JFrame("Source added");
+				f2.setVisible(true);
+				f2.setSize(100,100);
+				JLabel lab = new JLabel("Run Segmentation");
+				JPanel pan = new JPanel();
+				f2.add(pan);
+				pan.add(lab);
+			}
+			else if(ac.equals("Save Graph Model")){
+				JFrame f2 = new JFrame("Source added");
+				f2.setVisible(true);
+				f2.setSize(100,100);
+				JLabel lab = new JLabel("Save Graph");
+				JPanel pan = new JPanel();
+				f2.add(pan);
+				pan.add(lab);
+			}
+			else if(ac.equals("Save Segmentation")){
+				JFrame f2 = new JFrame("Source added");
+				f2.setVisible(true);
+				f2.setSize(100,100);
+				JLabel lab = new JLabel("Saved Seg");
+				JPanel pan = new JPanel();
+				f2.add(pan);
+				pan.add(lab);
+			}
+			else{
+				JFrame f2 = new JFrame("Source added");
+				f2.setVisible(true);
+				f2.setSize(100,100);
+				JLabel lab = new JLabel("Display Graph");
+				JPanel pan = new JPanel();
+				f2.add(pan);
+				pan.add(lab);
+			}
+		}
 	}
