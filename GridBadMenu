@@ -1,0 +1,7 @@
+import java.awt.*;
+import javax.swing.*;
+
+public static void GridBag(){
+JFrame frame = new JFrame("Project");
+frame.setSize(500, 500);
+frame.setVisible(true);
