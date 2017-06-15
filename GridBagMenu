@@ -2,15 +2,18 @@ import java.awt.*;
 import javax.swing.*;
 
 public static void GridBag(){
+		//creating frame
 		JFrame frame = new JFrame("Test");
 		frame.setSize(500, 500);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//create panel with grid bag layout
 		JPanel panel = new JPanel(new GridBagLayout());
-		
-		frame.getContentPane().add(panel, BorderLayout.NORTH);
-		
+		frame.getContentPane().add(panel);
 		GridBagConstraints c = new GridBagConstraints();
+		
+		//create buttons
 		JButton file = new JButton("Enter a file");
 		JButton addSource = new JButton("Add Source");
 		JButton addSink = new JButton("Add Sink");
@@ -21,6 +24,7 @@ public static void GridBag(){
 		JButton saveGraph = new JButton ("Save Graph Model");
 		JButton displayGraph = new JButton ("Display the Graph");
 		
+		//place buttons on the grid and add to the panel with an ActionListener
 		c.insets = new Insets(10, 10, 10, 10);
 		c.gridx = 0;
 		c.gridy = 0;
@@ -67,7 +71,10 @@ public static void GridBag(){
 		displayGraph.addActionListener(new Action());
 	}
 	
+	//class to "override" actionPerformed
+	//	complete the action of what the user chooses 
 	public static class Action implements ActionListener{
+		 
 		public void actionPerformed(ActionEvent e){
 			String ac = e.getActionCommand();
 			if(ac.equals("Add Source")){
@@ -134,16 +141,8 @@ public static void GridBag(){
 				pan.add(lab);
 			}
 			else if(ac.equals("Enter a file")){
-				JFrame f2 = new JFrame("Source added");
-				f2.setVisible(true);
-				f2.setSize(100,100);
-				JPanel pan = new JPanel();
-				f2.add(pan);
-				
-				JTextField textField = new JTextField();
-				textField.setPreferredSize(new Dimension(75, 25));
-				textField.setBackground(Color.green);
-				pan.add(textField);
+				String text = JOptionPane.showInputDialog("Enter a File");
+				openInputFile(text);
 			}
 			else{
 				JFrame f2 = new JFrame("Source added");
@@ -156,3 +155,19 @@ public static void GridBag(){
 			}
 		}
 	}
+	// opens a text file for input, returns a Scanner:
+		public static Scanner openInputFile(String filename)
+		{
+			Scanner scanner = null;
+	        	File file= new File(filename);
+
+	        	try{
+	        		scanner = new Scanner(file);
+	        		System.out.println("Opening file...\n");
+	        	}// end try
+	        	catch(FileNotFoundException fe){
+	        	   System.out.println("Can't open input file\n");
+	       	    return null; // array of 0 elements
+	        	} // end catch
+	        	return scanner;
+		}
