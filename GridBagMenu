@@ -2,8 +2,8 @@ import java.awt.*;
 import javax.swing.*;
 
 public static Scanner userScanner = new Scanner(System.in);
-	JButton button1, button2, button3;
-	static JButton addSource;
+	static JButton addSource, addSink, removeSource, removeSink, runSeg,
+					saveSeg, saveGraph, displayGraph;
 	
 	public static void GridBag(){
 		//creating frame
@@ -20,15 +20,23 @@ public static Scanner userScanner = new Scanner(System.in);
 		//create buttons
 		JButton file = new JButton("Enter a file");
 		addSource = new JButton("Add Source");
-		JButton addSink = new JButton("Add Sink");
-		JButton removeSource = new JButton("Remove Source");
-		JButton removeSink = new JButton("Remove Sink");
-		JButton runSeg = new JButton("Run Segmentation");
-		JButton saveSeg = new JButton("Save Segmentation");
-		JButton saveGraph = new JButton ("Save Graph Model");
-		JButton displayGraph = new JButton ("Display the Graph");
-		
 		addSource.setEnabled(false);
+		addSink = new JButton("Add Sink");
+		addSink.setEnabled(false);
+		removeSource = new JButton("Remove Source");
+		removeSource.setEnabled(false);
+		 removeSink = new JButton("Remove Sink");
+		removeSink.setEnabled(false);
+		 runSeg = new JButton("Run Segmentation");
+		runSeg.setEnabled(false);
+		 saveSeg = new JButton("Save Segmentation");
+		saveSeg.setEnabled(false);
+		 saveGraph = new JButton ("Save Graph Model");
+		saveGraph.setEnabled(false);
+		 displayGraph = new JButton ("Display the Graph");
+		displayGraph.setEnabled(false);
+		
+		
 		//place buttons on the grid and add to the panel with an ActionListener
 		c.insets = new Insets(10, 10, 10, 10);
 		c.gridx = 0;
@@ -79,21 +87,37 @@ public static Scanner userScanner = new Scanner(System.in);
 	//class to "override" actionPerformed
 	//	complete the action of what the user chooses 
 	public static class Action implements ActionListener{
-		 String input = "";
+		 
 		public void actionPerformed(ActionEvent e){
-			boolean file = false;
+			
 			String ac = e.getActionCommand();
 			if(ac.equals("Enter a file")){
 				String text = JOptionPane.showInputDialog("Enter a File");
-				input = text;
 				if(openInputFile(text) != null){
 					addSource.setEnabled(true);
+					addSink.setEnabled(true);
+					removeSource.setEnabled(true);
+					removeSink.setEnabled(true);
+					runSeg.setEnabled(true);
+					saveSeg.setEnabled(true);
+					saveGraph.setEnabled(true);
+					displayGraph.setEnabled(true);
+				}
+				else{
+					addSource.setEnabled(false);
+					addSink.setEnabled(false);
+					removeSource.setEnabled(false);
+					removeSink.setEnabled(false);
+					runSeg.setEnabled(false);
+					saveSeg.setEnabled(false);
+					saveGraph.setEnabled(false);
+					displayGraph.setEnabled(false);
 				}
 			}
 			else if(ac.equals("Add Source") ){
 				JOptionPane.showMessageDialog(null,"Add Source ");
 				}
-			else if(ac.equals("Add Sink") && file){
+			else if(ac.equals("Add Sink")){
 				JOptionPane.showMessageDialog(null,"Add Sink");
 			}
 			else if(ac.equals("Remove Source")){
