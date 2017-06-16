@@ -1,7 +1,11 @@
 import java.awt.*;
 import javax.swing.*;
 
-public static void GridBag(){
+public static Scanner userScanner = new Scanner(System.in);
+	JButton button1, button2, button3;
+	static JButton addSource;
+	
+	public static void GridBag(){
 		//creating frame
 		JFrame frame = new JFrame("Test");
 		frame.setSize(500, 500);
@@ -15,7 +19,7 @@ public static void GridBag(){
 		
 		//create buttons
 		JButton file = new JButton("Enter a file");
-		JButton addSource = new JButton("Add Source");
+		addSource = new JButton("Add Source");
 		JButton addSink = new JButton("Add Sink");
 		JButton removeSource = new JButton("Remove Source");
 		JButton removeSink = new JButton("Remove Sink");
@@ -24,6 +28,7 @@ public static void GridBag(){
 		JButton saveGraph = new JButton ("Save Graph Model");
 		JButton displayGraph = new JButton ("Display the Graph");
 		
+		addSource.setEnabled(false);
 		//place buttons on the grid and add to the panel with an ActionListener
 		c.insets = new Insets(10, 10, 10, 10);
 		c.gridx = 0;
@@ -31,42 +36,42 @@ public static void GridBag(){
 		panel.add(file, c);
 		file.addActionListener(new Action());
 		c.gridx = 0;
-		c.gridy = 0;
+		c.gridy = 1;
 		panel.add(addSource, c);
 		addSource.addActionListener(new Action());
 		
 		c.gridx = 0;
-		c.gridy = 1;
+		c.gridy = 2;
 		panel.add(addSink, c);
 		addSink.addActionListener(new Action());
 		
 		c.gridx = 0;
-		c.gridy = 2;
+		c.gridy = 3;
 		panel.add(removeSource, c);
 		removeSource.addActionListener(new Action());
 		
 		c.gridx = 0;
-		c.gridy = 3;
+		c.gridy = 4;
 		panel.add(removeSink, c);
 		removeSink.addActionListener(new Action());
 		
 		c.gridx = 0;
-		c.gridy = 4;
+		c.gridy = 5;
 		panel.add(runSeg, c);
 		runSeg.addActionListener(new Action());
 		
 		c.gridx = 0;
-		c.gridy = 5;
+		c.gridy = 6;
 		panel.add(saveSeg, c);
 		saveSeg.addActionListener(new Action());
 		
 		c.gridx = 0;
-		c.gridy = 6;
+		c.gridy = 7;
 		panel.add(saveGraph, c);
 		saveGraph.addActionListener(new Action());
 		
 		c.gridx = 0;
-		c.gridy = 7;
+		c.gridy = 8;
 		panel.add(displayGraph, c);
 		displayGraph.addActionListener(new Action());
 	}
@@ -74,84 +79,52 @@ public static void GridBag(){
 	//class to "override" actionPerformed
 	//	complete the action of what the user chooses 
 	public static class Action implements ActionListener{
-		 
+		 String input = "";
 		public void actionPerformed(ActionEvent e){
+			boolean file = false;
 			String ac = e.getActionCommand();
-			if(ac.equals("Add Source")){
-			JFrame f2 = new JFrame("Source added");
-			f2.setVisible(true);
-			f2.setSize(100,100);
-			JLabel lab = new JLabel("Source added");
-			JPanel pan = new JPanel();
-			f2.add(pan);
-			pan.add(lab);
+			if(ac.equals("Enter a file")){
+				String text = JOptionPane.showInputDialog("Enter a File");
+				input = text;
+				if(openInputFile(text) != null){
+					addSource.setEnabled(true);
+				}
 			}
-			else if(ac.equals("Add Sink")){
-				JFrame f2 = new JFrame("Source added");
-				f2.setVisible(true);
-				f2.setSize(100,100);
-				JLabel lab = new JLabel("Sink added");
-				JPanel pan = new JPanel();
-				f2.add(pan);
-				pan.add(lab);
+			else if(ac.equals("Add Source") ){
+				JOptionPane.showMessageDialog(null,"Add Source ");
+				}
+			else if(ac.equals("Add Sink") && file){
+				JOptionPane.showMessageDialog(null,"Add Sink");
 			}
 			else if(ac.equals("Remove Source")){
-				JFrame f2 = new JFrame("Source added");
-				f2.setVisible(true);
-				f2.setSize(100,100);
-				JLabel lab = new JLabel("Source removed");
-				JPanel pan = new JPanel();
-				f2.add(pan);
-				pan.add(lab);
+				JOptionPane.showMessageDialog(null,"Remove Source");
 			}
 			else if(ac.equals("Remove Sink")){
-				JFrame f2 = new JFrame("Source added");
-				f2.setVisible(true);
-				f2.setSize(100,100);
-				JLabel lab = new JLabel("Sink removed");
-				JPanel pan = new JPanel();
-				f2.add(pan);
-				pan.add(lab);
+				JOptionPane.showMessageDialog(null,"Remove Sink");
 			}
 			else if(ac.equals("Run Segmentation")){
-				JFrame f2 = new JFrame("Source added");
-				f2.setVisible(true);
-				f2.setSize(100,100);
-				JLabel lab = new JLabel("Run Segmentation");
-				JPanel pan = new JPanel();
-				f2.add(pan);
-				pan.add(lab);
+				JOptionPane.showMessageDialog(null,"Run Segmentation");
 			}
 			else if(ac.equals("Save Graph Model")){
-				JFrame f2 = new JFrame("Source added");
-				f2.setVisible(true);
-				f2.setSize(100,100);
-				JLabel lab = new JLabel("Save Graph");
-				JPanel pan = new JPanel();
-				f2.add(pan);
-				pan.add(lab);
+				JOptionPane.showMessageDialog(null,"Save Graph Model");
 			}
 			else if(ac.equals("Save Segmentation")){
-				JFrame f2 = new JFrame("Source added");
-				f2.setVisible(true);
-				f2.setSize(100,100);
-				JLabel lab = new JLabel("Saved Seg");
-				JPanel pan = new JPanel();
-				f2.add(pan);
-				pan.add(lab);
+				JOptionPane.showMessageDialog(null,"Save Segmentation");
 			}
-			else if(ac.equals("Enter a file")){
-				String text = JOptionPane.showInputDialog("Enter a File");
-				openInputFile(text);
+			else if(ac.equals("Breadth-First Traversal")){
+				JOptionPane.showMessageDialog(null,"Breadth-First Traversal");
+			}
+			else if(ac.equals("Adjacency List")){
+				JOptionPane.showMessageDialog(null,"Adjacency List");
+			}
+			else if(ac.equals("Depth-First Traversal")){
+				JOptionPane.showMessageDialog(null,"Depth-First Traversal");
+			}
+			else if(ac.equals("Display the Graph")){
+				displayMenu();
 			}
 			else{
-				JFrame f2 = new JFrame("Source added");
-				f2.setVisible(true);
-				f2.setSize(100,100);
-				JLabel lab = new JLabel("Display Graph");
-				JPanel pan = new JPanel();
-				f2.add(pan);
-				pan.add(lab);
+				JOptionPane.showMessageDialog(null, "Enter a file");
 			}
 		}
 	}
@@ -159,9 +132,8 @@ public static void GridBag(){
 		public static Scanner openInputFile(String filename)
 		{
 			Scanner scanner = null;
-	        	File file= new File(filename);
-
 	        	try{
+	        		File file= new File(filename);
 	        		scanner = new Scanner(file);
 	        		System.out.println("Opening file...\n");
 	        	}// end try
@@ -170,4 +142,32 @@ public static void GridBag(){
 	       	    return null; // array of 0 elements
 	        	} // end catch
 	        	return scanner;
+		}
+		
+		//method for the display the graph options
+		public static void displayMenu(){
+			JFrame frame = new JFrame("Display Menu");
+			frame.setVisible(true);
+			frame.setSize(300,300);
+			JButton bft = new JButton("Breadth-First Traversal");
+			JButton adj = new JButton("Adjacency List");
+			JButton dft = new JButton("Depth-First Traversal");
+			
+			JPanel panel = new JPanel(new GridBagLayout());
+			frame.getContentPane().add(panel);
+			GridBagConstraints c = new GridBagConstraints();
+			c.insets = new Insets(10,10,10, 10);
+			
+			c.gridx = 0;
+			c.gridy = 0;
+			panel.add(bft, c);
+			bft.addActionListener(new Action());
+			c.gridx = 0;
+			c.gridy = 1;
+			panel.add(adj, c);
+			adj.addActionListener(new Action());
+			c.gridx = 0;
+			c.gridy = 2;
+			panel.add(dft, c);
+			dft.addActionListener(new Action());
 		}
